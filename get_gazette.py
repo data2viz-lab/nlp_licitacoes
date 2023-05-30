@@ -15,7 +15,7 @@ try:
         result_json = response.json()
         str_name = TERRITORY_ID + "_" + PUBLISHED_SINCE.replace("-", "") + "_" + PUBLISHED_UNTIL.replace("-","")
         
-        with open("gazettes/" + str_name + ".json", 'w') as f:
+        with open("../output/gazettes/" + str_name + ".json", 'w') as f:
             json.dump(result_json, f)
 
         gazettes_list = result_json.get('gazettes')
@@ -23,7 +23,7 @@ try:
         for gazette in gazettes_list:
             id_ = gazette['territory_id'] + "_" + gazette['date'].replace("-","") + "_" + str(count)
             txt_file = gazette['txt_url']
-            request.urlretrieve(txt_file, "gazettes/" + id_ + ".txt")
+            request.urlretrieve(txt_file, "../output/gazettes/" + id_ + ".txt")
             count += 1
     else:
         raise Exception("Erro na coleta do diário: " + response.status_code)
