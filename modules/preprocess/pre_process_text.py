@@ -20,7 +20,8 @@ class PreProcessText:
             if not token.is_stop
             and not token.is_punct
             and token.lemma_.strip() != ""
-            and len(token.lemma_.strip()) > 1
+            and len(token.lemma_.strip()) > 3
+            and not any(char.isdigit() for char in token.text)
         ]
 
         return tokens
