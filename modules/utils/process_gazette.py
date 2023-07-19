@@ -32,3 +32,5 @@ class ProcessGazette():
                 json.dump(dictionary_pages, f)
 
         return dictionary_pages
+    
+#teste
