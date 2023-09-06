@@ -12,10 +12,6 @@ class PreProcessText:
         self.nlp_model = spacy.load(model)
 
     def is_date_format(self, text):
-        # Implemente aqui sua lógica para verificar se o texto é um formato de data válido
-        # Por exemplo, você pode usar expressões regulares ou bibliotecas de parsing de datas
-        # Retorne True se for um formato de data válido, ou False caso contrário.
-        # Exemplo hipotético:
         return (
             len(text) == 10
             and text[2] == "/"
