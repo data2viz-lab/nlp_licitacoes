@@ -21,36 +21,26 @@ class PreProcessText:
             and text[6:].isdigit()
         )
 
-    # def process_text(self, text):
-    #     doc_ = self.nlp_model(text)
-    #     # adicionei "" para remover as palavras vazias e len(token.lemma_.strip()) > 1 para remover palavras com 1 caracter
-    #     tokens = [
-    #         unidecode(token.lemma_.lower().strip())
-    #         for token in doc_
-    #         if not token.is_stop
-    #         and not token.is_punct
-    #         and token.lemma_.strip() != ""
-    #         and len(token.lemma_.strip()) > 3
-    #         # and not any(char.isdigit() for char in token.text)
-    #     ]
-
-    #     return tokens
+    DEBUG = True
 
     def process_text(self, text):
+        print("entrou")
         doc_ = self.nlp_model(text)
-        # Adicionei "" para remover as palavras vazias e len(token.lemma_.strip()) > 1 para remover palavras com 1 caracter
+        # Adicionei "" para remover as palavras vazias e len(token.lemma_.strip()) > 3 para remover palavras com 3 caracter
         tokens = []
         for token in doc_:
             if (
-                not token.is_stop
-                and not token.is_punct
+                not token.lemma_.is_stop
+                and not token.lemma_.is_punct
                 and token.lemma_.strip() != ""
                 and len(token.lemma_.strip()) > 3
             ):
                 if not (
-                    any(char.isdigit() for char in token.text)
+                    any(char.isdigit() for char in token.lemma_.text)
                     and not self.is_date_format(token.text)
                 ):
                     tokens.append(unidecode(token.lemma_.lower().strip()))
+                    print(token.lemma_.lower().strip())
+                    print("saiu")
 
         return tokens
