@@ -6,15 +6,15 @@ class PreProcessText:
     def __init__(self, model):
         self.nlp_model = spacy.load(model)
 
-    def is_date_format(self, text):
-        return (
-            len(text) == 10
-            and text[2] == "/"
-            and text[5] == "/"
-            and text[:2].isdigit()
-            and text[3:5].isdigit()
-            and text[6:].isdigit()
-        )
+    # def is_date_format(self, text):
+    #     return (
+    #         len(text) == 10
+    #         and text[2] == "/"
+    #         and text[5] == "/"
+    #         and text[:2].isdigit()
+    #         and text[3:5].isdigit()
+    #         and text[6:].isdigit()
+    #     )
 
     def process_text(self, text):
         doc_ = self.nlp_model(text)
@@ -25,11 +25,11 @@ class PreProcessText:
                 not token.is_stop
                 and not token.is_punct
                 and token.lemma_.strip() != ""
-                and len(token.lemma_.strip()) > 3
+                and len(token.lemma_.strip()) > 5
             ):
                 if not (
                     any(char.isdigit() for char in token.text)
-                    and not self.is_date_format(token.text)
+                    # and not self.is_date_format(token.text)
                 ):
                     tokens.append(unidecode(token.lemma_.lower().strip()))
 
