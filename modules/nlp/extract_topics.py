@@ -1,14 +1,15 @@
 from bertopic import BERTopic
+from preprocess import PreProcessText
 
-class ExtractTopics():
+pp = PreProcessText("pt_core_news_lg")
 
+
+class ExtractTopics:
     def __init__(self):
-
-        self.bert_model = BERTopic(language='portuguese', min_topic_size=2)
+        self.bert_model = BERTopic(language="portuguese", min_topic_size=2)
 
     def extract_topics(self, text):
-
         model_ = self.bert_model.fit_transform(text)
         topics = model_.get_topics()
 
-        return topics 
+        return topics
