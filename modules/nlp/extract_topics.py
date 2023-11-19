@@ -11,5 +11,4 @@ class ExtractTopics:
     def extract_topics(self, text):
         model_ = self.bert_model.fit_transform(text)
         topics = model_.get_topics()
-
         return topics
