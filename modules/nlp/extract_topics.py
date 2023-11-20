@@ -1,7 +1,4 @@
 from bertopic import BERTopic
-from preprocess import PreProcessText
-
-pp = PreProcessText("pt_core_news_lg")
 
 
 class ExtractTopics:
