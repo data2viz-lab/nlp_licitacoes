@@ -9,6 +9,6 @@ class ExtractTopics():
     def extract_topics(self, text):
 
         model_ = self.bert_model.fit_transform(text)
-        topics = model_.get_topics()
+        topics = self.bert_model.get_topics(model_)
 
         return topics 
